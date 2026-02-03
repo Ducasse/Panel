@@ -7,7 +7,8 @@ Class {
 		'bottomRow',
 		'topRow',
 		'center',
-		'extent'
+		'extent',
+		'rightColumn'
 	],
 	#category : 'Panel',
 	#package : 'Panel'
@@ -26,6 +27,7 @@ Panelist >> extent: aPoint [
 
 	extent := aPoint.
 	leftColumn inExtent: aPoint.
+	rightColumn inExtent: aPoint.
 ]
 
 { #category : 'accessing' }
@@ -33,9 +35,15 @@ Panelist >> initialize [
 	
 	super initialize. 
 	leftColumn := LeftPanelColumn new.
+	rightColumn := RightPanelColumn new
 ]
 
 { #category : 'accessing' }
 Panelist >> leftColumn [
 	^ leftColumn
+]
+
+{ #category : 'accessing' }
+Panelist >> rightColumn [
+	^ rightColumn
 ]
