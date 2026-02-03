@@ -6,6 +6,17 @@ Class {
 }
 
 { #category : 'tests' }
+LeftPanelColumnTest >> testLeftPanelColumnBounds [
+
+	| blp |
+	blp := LeftPanelColumn new
+				inExtent: 1000@600.
+	
+	self assert: blp bounds equals: (0@0 corner: 200@600).
+	
+]
+
+{ #category : 'tests' }
 LeftPanelColumnTest >> testLeftPanelColumnDefaultSize [
 
 	| blp |
@@ -23,7 +34,7 @@ LeftPanelColumnTest >> testLeftPanelColumnExtent [
 	blp := LeftPanelColumn new
 				inExtent: 1000@600.
 	
-	self assert: blp extent equals: (0@0 extent: 200@600).
+	self assert: blp extent equals: 200@600.
 	
 ]
 

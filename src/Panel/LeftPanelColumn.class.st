@@ -17,9 +17,15 @@ LeftPanelColumn >> bottomRight [
 ]
 
 { #category : 'accessing' }
+LeftPanelColumn >> bounds [
+	
+	^ self topLeft corner: self bottomRight
+]
+
+{ #category : 'accessing' }
 LeftPanelColumn >> extent [
 	
-	^ self topLeft extent: self bottomRight
+	^ width @ parentHeight
 ]
 
 { #category : 'accessing]' }
