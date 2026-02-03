@@ -9,21 +9,22 @@ Class {
 { #category : 'accessing' }
 TopPanelRow >> bottomRight [
 	
-	^ parent width - parent widthOfRightColumn @ height
+	^ hidden 
+		ifTrue: [  parent width - parent widthOfRightColumn @ 0 ]
+		ifFalse: [ parent width - parent widthOfRightColumn @ height ]
+		
 ]
 
 { #category : 'accessing' }
-TopPanelRow >> inPanel: aPanelist [
-
-	parent := aPanelist 
+TopPanelRow >> bounds [
+	
+	^ self topLeft corner: self bottomRight
 ]
 
-{ #category : 'initialization' }
-TopPanelRow >> initialize [ 
+{ #category : 'accessing' }
+TopPanelRow >> height: anInteger [
 
-	super initialize.
-	hidden := false. 
-	height := 200.
+	height := anInteger
 ]
 
 { #category : 'accessing' }
