@@ -5,7 +5,8 @@ Class {
 		'parentWidth',
 		'parentHeight',
 		'width',
-		'hidden'
+		'hidden',
+		'split'
 	],
 	#category : 'Panel',
 	#package : 'Panel'
@@ -17,6 +18,12 @@ LeftPanelColumn >> bottomRight [
 	^ hidden 
 		ifTrue: [ 0@ parentHeight ]
 		ifFalse: [ width @ parentHeight ]
+]
+
+{ #category : 'as yet unclassified' }
+LeftPanelColumn >> bottomSplit [
+	
+	^ 0 @ (parentHeight /2) corner: self bottomRight
 ]
 
 { #category : 'accessing' }
@@ -31,13 +38,13 @@ LeftPanelColumn >> extent [
 	^ width @ parentHeight
 ]
 
-{ #category : 'host space - displaying' }
+{ #category : 'operations' }
 LeftPanelColumn >> hide [
 	
 	hidden := true
 ]
 
-{ #category : 'accessing]' }
+{ #category : 'accessing' }
 LeftPanelColumn >> inExtent: aPoint [ 
  	
 	parentWidth := aPoint x.
@@ -50,15 +57,24 @@ LeftPanelColumn >> initialize [
 	
 	super initialize.
 	width := 200. 
-	hidden := false
+	hidden := false.
+	split := false.
 ]
 
 { #category : 'accessing' }
 LeftPanelColumn >> topLeft [
-	^ 0 @ 0
+
+	^ split ifFalse: [ 0 @ 0 ]
 ]
 
 { #category : 'as yet unclassified' }
+LeftPanelColumn >> topSplit [
+	
+
+	^ self topLeft corner: width @ (parentHeight /2 )
+]
+
+{ #category : 'operations' }
 LeftPanelColumn >> unhide [
 	
 	hidden := false

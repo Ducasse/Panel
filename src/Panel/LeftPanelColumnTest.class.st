@@ -5,7 +5,7 @@ Class {
 	#package : 'Panel'
 }
 
-{ #category : 'tests - split' }
+{ #category : 'tests - hide' }
 LeftPanelColumnTest >> testHide [
 
 	| blp |
@@ -66,4 +66,25 @@ LeftPanelColumnTest >> testLeftPanelColumnSetItsWidth [
 	
 	self assert: blp bottomRight equals: 300@600.
 	self assert: blp topLeft equals: 0@0. 
+]
+
+{ #category : 'tests - split' }
+LeftPanelColumnTest >> testSplit [
+
+	| blp topSplit bottomSplit |
+	blp := LeftPanelColumn new
+				inExtent: 1000@600.
+	
+	topSplit := blp topSplit.
+	self assert: topSplit topLeft equals: 0@0.
+	self assert: topSplit bottomRight equals: 200@300.
+	
+	
+	bottomSplit := blp bottomSplit.
+	self assert: bottomSplit topLeft equals: 0@300.
+	self assert: bottomSplit bottomRight equals: 200@600.
+	
+	"this is a bit stupid since it is overlapping so it should be 301"
+	
+	
 ]
