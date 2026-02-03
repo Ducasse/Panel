@@ -5,6 +5,24 @@ Class {
 	#package : 'Panel'
 }
 
+{ #category : 'tests - split' }
+LeftPanelColumnTest >> testHide [
+
+	| blp |
+	blp := LeftPanelColumn new
+				inExtent: 1000@600.
+	
+	self assert: blp bottomRight equals: 200@600.
+	self assert: blp topLeft equals: 0@0. 
+	
+	blp hide.
+	self assert: blp bottomRight equals: 0@600.
+	
+	blp unhide.
+	self assert: blp bottomRight equals: 200@600.
+	
+]
+
 { #category : 'tests' }
 LeftPanelColumnTest >> testLeftPanelColumnBounds [
 
