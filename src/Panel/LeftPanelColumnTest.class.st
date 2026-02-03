@@ -17,6 +17,17 @@ LeftPanelColumnTest >> testLeftPanelColumnDefaultSize [
 ]
 
 { #category : 'tests' }
+LeftPanelColumnTest >> testLeftPanelColumnExtent [
+
+	| blp |
+	blp := LeftPanelColumn new
+				inExtent: 1000@600.
+	
+	self assert: blp extent equals: (0@0 extent: 200@600).
+	
+]
+
+{ #category : 'tests' }
 LeftPanelColumnTest >> testLeftPanelColumnSetItsWidth [
 
 	| blp |

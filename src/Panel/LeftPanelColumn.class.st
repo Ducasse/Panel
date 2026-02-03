@@ -16,6 +16,12 @@ LeftPanelColumn >> bottomRight [
 	^ width @ parentHeight
 ]
 
+{ #category : 'accessing' }
+LeftPanelColumn >> extent [
+	
+	^ self topLeft extent: self bottomRight
+]
+
 { #category : 'accessing]' }
 LeftPanelColumn >> inExtent: aPoint [ 
  	
