@@ -1,8 +1,9 @@
 Class {
 	#name : 'RightPanelColumnTest',
 	#superclass : 'TestCase',
-	#category : 'Panel',
-	#package : 'Panel'
+	#category : 'Panel-Tests',
+	#package : 'Panel',
+	#tag : 'Tests'
 }
 
 { #category : 'tests - split' }

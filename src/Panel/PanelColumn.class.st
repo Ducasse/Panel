@@ -1,3 +1,6 @@
+"
+I'm the superclass of columns whose width can change.
+"
 Class {
 	#name : 'PanelColumn',
 	#superclass : 'Object',
@@ -7,8 +10,9 @@ Class {
 		'width',
 		'hidden'
 	],
-	#category : 'Panel',
-	#package : 'Panel'
+	#category : 'Panel-Core',
+	#package : 'Panel',
+	#tag : 'Core'
 }
 
 { #category : 'accessing' }

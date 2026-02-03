@@ -1,3 +1,25 @@
+"
+I'm a five part component
+
+```
+-----------------
+|  |_________|  |
+|  |         |  |
+|  |         |  |
+|  |_________|  |
+|  |         |  |
+-----------------
+```
+
+I have 
+- a leftColumn whose width can change
+- a rightColumn whose width can change
+- a top row whose height can change
+- a bottom row whose height can change
+- a center zone
+
+
+"
 Class {
 	#name : 'Panelist',
 	#superclass : 'Object',
@@ -8,10 +30,13 @@ Class {
 		'topRow',
 		'center',
 		'extent',
-		'rightColumn'
+		'rightColumn',
+		'widthOfLeftColumn',
+		'widthOfRightColumn'
 	],
-	#category : 'Panel',
-	#package : 'Panel'
+	#category : 'Panel-Core',
+	#package : 'Panel',
+	#tag : 'Core'
 }
 
 { #category : 'geometry' }
@@ -30,10 +55,13 @@ Panelist >> extent: aPoint [
 	rightColumn inExtent: aPoint.
 ]
 
-{ #category : 'accessing' }
+{ #category : 'initialization' }
 Panelist >> initialize [ 
 	
 	super initialize. 
+	
+	"may be we should pass the receiver to its component
+	a row needs to know the different width of the columns so we pass it the receiver and it can ask it."
 	leftColumn := LeftPanelColumn new.
 	rightColumn := RightPanelColumn new
 ]
@@ -46,4 +74,18 @@ Panelist >> leftColumn [
 { #category : 'accessing' }
 Panelist >> rightColumn [
 	^ rightColumn
+]
+
+{ #category : 'accessing' }
+Panelist >> widthOfLeftColumn: anInteger [
+ 
+	widthOfLeftColumn := anInteger.
+	leftColumn width: anInteger
+]
+
+{ #category : 'accessing' }
+Panelist >> widthOfRightColumn: anInteger [ 
+	
+	widthOfRightColumn := anInteger.
+	rightColumn width: anInteger.	
 ]

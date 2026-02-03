@@ -1,8 +1,9 @@
 Class {
 	#name : 'RightPanelColumn',
 	#superclass : 'PanelColumn',
-	#category : 'Panel',
-	#package : 'Panel'
+	#category : 'Panel-Core',
+	#package : 'Panel',
+	#tag : 'Core'
 }
 
 { #category : 'accessing' }
