@@ -27,6 +27,18 @@ TopPanelRow >> height: anInteger [
 	height := anInteger
 ]
 
+{ #category : 'as yet unclassified' }
+TopPanelRow >> leftSplit [
+	
+	^ (parent widthOfLeftColumn @ 0) corner: (parent rowWidth /2) @ height
+]
+
+{ #category : 'as yet unclassified' }
+TopPanelRow >> rightSplit [
+	
+	^ (parent rowWidth /2) @0 corner: parent rowWidth @ height
+]
+
 { #category : 'accessing' }
 TopPanelRow >> topLeft [
 

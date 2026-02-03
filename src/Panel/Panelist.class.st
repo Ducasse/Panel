@@ -83,6 +83,12 @@ Panelist >> rightColumn [
 ]
 
 { #category : 'accessing' }
+Panelist >> rowWidth [
+
+	^ width - widthOfLeftColumn - widthOfRightColumn 
+]
+
+{ #category : 'accessing' }
 Panelist >> width [
 	^ width
 ]

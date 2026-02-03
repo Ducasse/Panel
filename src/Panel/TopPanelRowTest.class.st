@@ -18,6 +18,34 @@ TopPanelRowTest >> panel [
 ]
 
 { #category : 'tests' }
+TopPanelRowTest >> testLeftSplit [
+
+	| blp leftSplit |
+	blp := TopPanelRow new
+				inPanel: self panel.
+	
+	leftSplit := blp leftSplit.
+	self assert: leftSplit topLeft equals: 150@0.
+	self assert: leftSplit bottomRight equals: 350@200.
+	
+	
+]
+
+{ #category : 'tests' }
+TopPanelRowTest >> testRightSplit [
+
+	| blp rightSplit |
+	blp := TopPanelRow new
+				inPanel: self panel.
+	
+	rightSplit := blp rightSplit.
+	self assert: rightSplit topLeft equals: 350@0.
+	self assert: rightSplit bottomRight equals: 700@200.
+	
+	
+]
+
+{ #category : 'tests' }
 TopPanelRowTest >> testTopPanelRowBounds [
 
 	| blp |
