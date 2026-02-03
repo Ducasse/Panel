@@ -2,8 +2,6 @@ Class {
 	#name : 'PanelRow',
 	#superclass : 'Object',
 	#instVars : [
-		'parentWidth',
-		'parentHeight',
 		'height',
 		'hidden',
 		'parent'
