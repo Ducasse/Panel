@@ -29,10 +29,11 @@ Class {
 		'bottomRow',
 		'topRow',
 		'center',
-		'extent',
 		'rightColumn',
 		'widthOfLeftColumn',
-		'widthOfRightColumn'
+		'widthOfRightColumn',
+		'width',
+		'height'
 	],
 	#category : 'Panel-Core',
 	#package : 'Panel',
@@ -50,9 +51,13 @@ Panelist class >> extent: aPoint [
 { #category : 'accessing' }
 Panelist >> extent: aPoint [
 
-	extent := aPoint.
+	width := aPoint x.
+	height := aPoint y.
+	"we could revisit the fact that we push the extent to column and instead we could pass the receiver
+	and it would get requested to get its width and height."
 	leftColumn inExtent: aPoint.
 	rightColumn inExtent: aPoint.
+	
 ]
 
 { #category : 'initialization' }
@@ -63,7 +68,8 @@ Panelist >> initialize [
 	"may be we should pass the receiver to its component
 	a row needs to know the different width of the columns so we pass it the receiver and it can ask it."
 	leftColumn := LeftPanelColumn new.
-	rightColumn := RightPanelColumn new
+	rightColumn := RightPanelColumn new.
+	topRow := TopPanelRow new inPanel: self.
 ]
 
 { #category : 'accessing' }
@@ -77,10 +83,25 @@ Panelist >> rightColumn [
 ]
 
 { #category : 'accessing' }
+Panelist >> width [
+	^ width
+]
+
+{ #category : 'accessing' }
+Panelist >> widthOfLeftColumn [
+	^ widthOfLeftColumn
+]
+
+{ #category : 'accessing' }
 Panelist >> widthOfLeftColumn: anInteger [
  
 	widthOfLeftColumn := anInteger.
 	leftColumn width: anInteger
+]
+
+{ #category : 'accessing' }
+Panelist >> widthOfRightColumn [
+	^ widthOfRightColumn
 ]
 
 { #category : 'accessing' }

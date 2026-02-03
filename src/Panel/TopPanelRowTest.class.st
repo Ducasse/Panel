@@ -9,7 +9,8 @@ Class {
 { #category : 'tests' }
 TopPanelRowTest >> testTopPanelRowDefaultSize [
 
-	| blp |
+	| blp panel |
+	
 	blp := TopPanelRow new
 				inPanel: (Panelist new 
 					extent: 1000@800;
@@ -17,8 +18,9 @@ TopPanelRowTest >> testTopPanelRowDefaultSize [
 					widthOfRightColumn: 150;
 					yourself
 				).
+	"default height of row is 200"
 				
-	self assert: blp topLeft equals: 800@0. 
-	self assert: blp bottomRight equals: 1000@600.
+	self assert: blp topLeft equals: 150@0. 
+	self assert: blp bottomRight equals: 850@200.
 	
 ]
