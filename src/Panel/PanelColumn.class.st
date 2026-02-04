@@ -7,7 +7,8 @@ Class {
 	#instVars : [
 		'width',
 		'hidden',
-		'parent'
+		'parent',
+		'verticalSplitY'
 	],
 	#category : 'Panel-Core',
 	#package : 'Panel',
@@ -60,9 +61,21 @@ PanelColumn >> parentWidth [
 ]
 
 { #category : 'operations' }
+PanelColumn >> splitVerticalPosition: aPoint [
+
+	verticalSplitY := aPoint y
+]
+
+{ #category : 'operations' }
 PanelColumn >> unhide [
 	
 	hidden := false
+]
+
+{ #category : 'accessing' }
+PanelColumn >> verticalSplitY [
+
+	^ verticalSplitY ifNil: [ verticalSplitY := parent height / 2 ]
 ]
 
 { #category : 'accessing' }

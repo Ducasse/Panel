@@ -15,7 +15,7 @@ RightPanelColumn >> bottomRight [
 { #category : 'accessing' }
 RightPanelColumn >> bottomSplit [
 	
-	^ (self parentWidth - width) @ (self parentHeight /2) corner: self bottomRight
+	^ (self parentWidth - width) @ (self verticalSplitY ) corner: self bottomRight
 ]
 
 { #category : 'accessing' }
@@ -31,5 +31,5 @@ RightPanelColumn >> topLeft [
 RightPanelColumn >> topSplit [
 	
 
-	^ self topLeft corner: self parentWidth @ (self parentHeight /2 )
+	^ self topLeft corner: self parentWidth @ (self verticalSplitY )
 ]
