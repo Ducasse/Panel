@@ -5,8 +5,6 @@ Class {
 	#name : 'PanelColumn',
 	#superclass : 'Object',
 	#instVars : [
-		'parentWidth',
-		'parentHeight',
 		'width',
 		'hidden',
 		'parent'
@@ -64,21 +62,9 @@ PanelColumn >> parentHeight [
 ]
 
 { #category : 'accessing' }
-PanelColumn >> parentHeight: anObject [
-
-	parentHeight := anObject
-]
-
-{ #category : 'accessing' }
 PanelColumn >> parentWidth [
 
 	^ parent width
-]
-
-{ #category : 'accessing' }
-PanelColumn >> parentWidth: anObject [
-
-	parentWidth := anObject
 ]
 
 { #category : 'operations' }

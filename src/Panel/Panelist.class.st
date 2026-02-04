@@ -53,11 +53,7 @@ Panelist >> extent: aPoint [
 
 	width := aPoint x.
 	height := aPoint y.
-	"we could revisit the fact that we push the extent to column and instead we could pass the receiver
-	and it would get requested to get its width and height."
-	leftColumn inExtent: aPoint.
-	rightColumn inExtent: aPoint.
-	
+
 ]
 
 { #category : 'accessing' }
