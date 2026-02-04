@@ -1,6 +1,9 @@
 Class {
 	#name : 'LeftPanelColumn',
 	#superclass : 'PanelColumn',
+	#instVars : [
+		'verticalSplitY'
+	],
 	#category : 'Panel-Core',
 	#package : 'Panel',
 	#tag : 'Core'
@@ -16,8 +19,15 @@ LeftPanelColumn >> bottomRight [
 
 { #category : 'accessing' }
 LeftPanelColumn >> bottomSplit [
-	
-	^ 0 @ (self parentHeight /2) corner: self bottomRight
+	"does not make much sense to be called in hidden mode"
+		
+	^ 0 @ (self verticalSplitY) corner: self bottomRight
+]
+
+{ #category : 'accessing' }
+LeftPanelColumn >> splitVerticalPosition: aPoint [
+
+	verticalSplitY := aPoint y
 ]
 
 { #category : 'accessing' }
@@ -28,7 +38,13 @@ LeftPanelColumn >> topLeft [
 
 { #category : 'accessing' }
 LeftPanelColumn >> topSplit [
+	"does not make much sense to be called in hidden mode"
 	
+	^ self topLeft corner: width @ (self verticalSplitY)
+]
 
-	^ self topLeft corner: width @ (self parentHeight /2 )
+{ #category : 'accessing' }
+LeftPanelColumn >> verticalSplitY [
+
+	^ verticalSplitY ifNil: [ verticalSplitY := parent height / 2 ]
 ]

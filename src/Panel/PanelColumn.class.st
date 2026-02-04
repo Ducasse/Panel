@@ -33,14 +33,6 @@ PanelColumn >> hide [
 ]
 
 { #category : 'accessing' }
-PanelColumn >> inExtent: aPoint [ 
- 	
-	self parentWidth: aPoint x.
-	self parentHeight: aPoint y
-	
-]
-
-{ #category : 'accessing' }
 PanelColumn >> inPanel: aParent [
 
 	parent := aParent

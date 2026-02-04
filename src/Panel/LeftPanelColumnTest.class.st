@@ -86,6 +86,36 @@ LeftPanelColumnTest >> testLeftPanelColumnSetItsWidth [
 ]
 
 { #category : 'tests - split' }
+LeftPanelColumnTest >> testSplitProportionChangesBottomSplit [
+	
+	| bottomSplit |
+	blp splitVerticalPosition: 0@100.
+	"We get a position because this may be what a widget will give us"
+	bottomSplit := blp bottomSplit. 
+	
+	self assert: bottomSplit topLeft equals: 0@100.
+	self assert: bottomSplit bottomRight equals: 200@600.
+	
+	
+]
+
+{ #category : 'tests - split' }
+LeftPanelColumnTest >> testSplitProportionChangesTopSplit [
+	
+	| topSplit |
+	blp splitVerticalPosition: 0@100.
+	"We get a position because this may be what a widget will give us"
+	topSplit := blp topSplit. 
+	
+	"always fixed"
+	self assert: topSplit topLeft equals: 0@0.
+	
+	self assert: topSplit bottomRight equals: 200@100.
+	
+	
+]
+
+{ #category : 'tests - split' }
 LeftPanelColumnTest >> testTopSplit [
 	
 	| topSplit |
