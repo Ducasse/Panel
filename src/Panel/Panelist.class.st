@@ -60,15 +60,18 @@ Panelist >> extent: aPoint [
 	
 ]
 
+{ #category : 'accessing' }
+Panelist >> height [
+
+	^ height 
+]
+
 { #category : 'initialization' }
 Panelist >> initialize [ 
 	
 	super initialize. 
-	
-	"may be we should pass the receiver to its component
-	a row needs to know the different width of the columns so we pass it the receiver and it can ask it."
-	leftColumn := LeftPanelColumn new.
-	rightColumn := RightPanelColumn new.
+	leftColumn := LeftPanelColumn new inPanel: self.
+	rightColumn := RightPanelColumn new inPanel: self.
 	topRow := TopPanelRow new inPanel: self.
 ]
 

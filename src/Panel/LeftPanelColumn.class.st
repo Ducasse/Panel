@@ -10,14 +10,14 @@ Class {
 LeftPanelColumn >> bottomRight [
 	
 	^ hidden 
-		ifTrue: [ 0@ parentHeight ]
-		ifFalse: [ width @ parentHeight ]
+		ifTrue: [ 0@ self parentHeight ]
+		ifFalse: [ width @ self parentHeight ]
 ]
 
 { #category : 'accessing' }
 LeftPanelColumn >> bottomSplit [
 	
-	^ 0 @ (parentHeight /2) corner: self bottomRight
+	^ 0 @ (self parentHeight /2) corner: self bottomRight
 ]
 
 { #category : 'accessing' }
@@ -30,5 +30,5 @@ LeftPanelColumn >> topLeft [
 LeftPanelColumn >> topSplit [
 	
 
-	^ self topLeft corner: width @ (parentHeight /2 )
+	^ self topLeft corner: width @ (self parentHeight /2 )
 ]

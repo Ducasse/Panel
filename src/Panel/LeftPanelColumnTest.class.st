@@ -1,18 +1,37 @@
 Class {
 	#name : 'LeftPanelColumnTest',
 	#superclass : 'TestCase',
+	#instVars : [
+		'blp'
+	],
 	#category : 'Panel-Tests',
 	#package : 'Panel',
 	#tag : 'Tests'
 }
 
+{ #category : 'tests' }
+LeftPanelColumnTest >> panel [
+
+	^ Panelist new 
+			extent: 1000@600;
+			widthOfLeftColumn: 150;
+			widthOfRightColumn: 150;
+			yourself
+			
+]
+
+{ #category : 'tests' }
+LeftPanelColumnTest >> setUp [
+
+	super setUp.
+	blp := LeftPanelColumn new	inPanel: self panel
+
+]
+
 { #category : 'tests - split' }
 LeftPanelColumnTest >> testBottomSplit [
-
-	| blp bottomSplit |
-	blp := LeftPanelColumn new
-				inExtent: 1000@600.
 	
+	| bottomSplit |
 	bottomSplit := blp bottomSplit.
 	self assert: bottomSplit topLeft equals: 0@300.
 	self assert: bottomSplit bottomRight equals: 200@600.
@@ -24,10 +43,6 @@ LeftPanelColumnTest >> testBottomSplit [
 
 { #category : 'tests - hide' }
 LeftPanelColumnTest >> testHide [
-
-	| blp |
-	blp := LeftPanelColumn new
-				inExtent: 1000@600.
 	
 	self assert: blp bottomRight equals: 200@600.
 	self assert: blp topLeft equals: 0@0. 
@@ -42,10 +57,6 @@ LeftPanelColumnTest >> testHide [
 
 { #category : 'tests' }
 LeftPanelColumnTest >> testLeftPanelColumnBounds [
-
-	| blp |
-	blp := LeftPanelColumn new
-				inExtent: 1000@600.
 	
 	self assert: blp bounds equals: (0@0 corner: 200@600).
 	
@@ -53,10 +64,6 @@ LeftPanelColumnTest >> testLeftPanelColumnBounds [
 
 { #category : 'tests' }
 LeftPanelColumnTest >> testLeftPanelColumnDefaultSize [
-
-	| blp |
-	blp := LeftPanelColumn new
-				inExtent: 1000@600.
 	
 	self assert: blp bottomRight equals: 200@600.
 	self assert: blp topLeft equals: 0@0. 
@@ -64,10 +71,6 @@ LeftPanelColumnTest >> testLeftPanelColumnDefaultSize [
 
 { #category : 'tests' }
 LeftPanelColumnTest >> testLeftPanelColumnExtent [
-
-	| blp |
-	blp := LeftPanelColumn new
-				inExtent: 1000@600.
 	
 	self assert: blp extent equals: 200@600.
 	
@@ -76,9 +79,6 @@ LeftPanelColumnTest >> testLeftPanelColumnExtent [
 { #category : 'tests' }
 LeftPanelColumnTest >> testLeftPanelColumnSetItsWidth [
 
-	| blp |
-	blp := LeftPanelColumn new
-				inExtent: 1000@600.
 	blp width: 300.
 	
 	self assert: blp bottomRight equals: 300@600.
@@ -87,11 +87,8 @@ LeftPanelColumnTest >> testLeftPanelColumnSetItsWidth [
 
 { #category : 'tests - split' }
 LeftPanelColumnTest >> testTopSplit [
-
-	| blp topSplit |
-	blp := LeftPanelColumn new
-				inExtent: 1000@600.
 	
+	| topSplit |
 	topSplit := blp topSplit.
 	self assert: topSplit topLeft equals: 0@0.
 	self assert: topSplit bottomRight equals: 200@300.

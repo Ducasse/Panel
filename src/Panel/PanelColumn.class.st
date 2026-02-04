@@ -8,7 +8,8 @@ Class {
 		'parentWidth',
 		'parentHeight',
 		'width',
-		'hidden'
+		'hidden',
+		'parent'
 	],
 	#category : 'Panel-Core',
 	#package : 'Panel',
@@ -24,7 +25,7 @@ PanelColumn >> bounds [
 { #category : 'accessing' }
 PanelColumn >> extent [
 	
-	^ width @ parentHeight
+	^ width @ self parentHeight
 ]
 
 { #category : 'operations' }
@@ -36,9 +37,15 @@ PanelColumn >> hide [
 { #category : 'accessing' }
 PanelColumn >> inExtent: aPoint [ 
  	
-	parentWidth := aPoint x.
-	parentHeight := aPoint y
+	self parentWidth: aPoint x.
+	self parentHeight: aPoint y
 	
+]
+
+{ #category : 'accessing' }
+PanelColumn >> inPanel: aParent [
+
+	parent := aParent
 ]
 
 { #category : 'initialization' }
@@ -48,6 +55,30 @@ PanelColumn >> initialize [
 	width := 200. 
 	hidden := false.
 
+]
+
+{ #category : 'accessing' }
+PanelColumn >> parentHeight [
+
+	^ parent height
+]
+
+{ #category : 'accessing' }
+PanelColumn >> parentHeight: anObject [
+
+	parentHeight := anObject
+]
+
+{ #category : 'accessing' }
+PanelColumn >> parentWidth [
+
+	^ parent width
+]
+
+{ #category : 'accessing' }
+PanelColumn >> parentWidth: anObject [
+
+	parentWidth := anObject
 ]
 
 { #category : 'operations' }

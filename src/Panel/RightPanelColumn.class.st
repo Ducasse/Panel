@@ -9,21 +9,21 @@ Class {
 { #category : 'accessing' }
 RightPanelColumn >> bottomRight [
 
-	^ parentWidth @ parentHeight 
+	^ self parentWidth @ self parentHeight 
 ]
 
 { #category : 'accessing' }
 RightPanelColumn >> bottomSplit [
 	
-	^ (parentWidth - width) @ (parentHeight /2) corner: self bottomRight
+	^ (self parentWidth - width) @ (self parentHeight /2) corner: self bottomRight
 ]
 
 { #category : 'accessing' }
 RightPanelColumn >> topLeft [
 	
 	^ hidden 
-		ifTrue: [ parentWidth @ 0]
-		ifFalse: [ parentWidth - width @ 0 ]
+		ifTrue: [ self parentWidth @ 0]
+		ifFalse: [ self parentWidth - width @ 0 ]
 
 ]
 
@@ -31,5 +31,5 @@ RightPanelColumn >> topLeft [
 RightPanelColumn >> topSplit [
 	
 
-	^ self topLeft corner: parentWidth @ (parentHeight /2 )
+	^ self topLeft corner: self parentWidth @ (self parentHeight /2 )
 ]
