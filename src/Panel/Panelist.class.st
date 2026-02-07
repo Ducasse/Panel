@@ -30,8 +30,6 @@ Class {
 		'topRow',
 		'center',
 		'rightColumn',
-		'widthOfLeftColumn',
-		'widthOfRightColumn',
 		'width',
 		'height'
 	],
@@ -84,7 +82,13 @@ Panelist >> rightColumn [
 { #category : 'accessing' }
 Panelist >> rowWidth [
 
-	^ width - widthOfLeftColumn - widthOfRightColumn 
+	^ width - self widthOfLeftColumn - self widthOfRightColumn 
+]
+
+{ #category : 'accessing' }
+Panelist >> topRow [
+
+	^ topRow
 ]
 
 { #category : 'accessing' }
@@ -94,24 +98,22 @@ Panelist >> width [
 
 { #category : 'accessing' }
 Panelist >> widthOfLeftColumn [
-	^ widthOfLeftColumn
+	^ leftColumn width
 ]
 
 { #category : 'accessing' }
 Panelist >> widthOfLeftColumn: anInteger [
- 
-	widthOfLeftColumn := anInteger.
+
 	leftColumn width: anInteger
 ]
 
 { #category : 'accessing' }
 Panelist >> widthOfRightColumn [
-	^ widthOfRightColumn
+	^ rightColumn width
 ]
 
 { #category : 'accessing' }
 Panelist >> widthOfRightColumn: anInteger [ 
 	
-	widthOfRightColumn := anInteger.
 	rightColumn width: anInteger.	
 ]

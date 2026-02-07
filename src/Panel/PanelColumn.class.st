@@ -79,6 +79,11 @@ PanelColumn >> verticalSplitY [
 ]
 
 { #category : 'accessing' }
+PanelColumn >> width [
+	^ width
+]
+
+{ #category : 'accessing' }
 PanelColumn >> width: anInteger [ 
 	width := anInteger
 ]
