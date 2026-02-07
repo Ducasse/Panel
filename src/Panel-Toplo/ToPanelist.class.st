@@ -12,7 +12,7 @@ Class {
 	#package : 'Panel-Toplo'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : 'trying' }
 ToPanelist >> displayFloaters [
 	"self new displayFloaters"
 	
@@ -90,8 +90,8 @@ ToPanelist >> setPanelistVisualElements [
 	
 	topRow := ToInnerWindow new 
 						position: panelist topRow topLeft;
-						width: panelist rowWidth ;
-						width: panelist topRow height.
+						width: panelist rowWidth - 200;
+						height: panelist topRow height.
 	frame addChild: topRow. 
 	
 	frame openInSpace.

@@ -22,6 +22,12 @@ TopPanelRow >> bounds [
 ]
 
 { #category : 'accessing' }
+TopPanelRow >> height [
+
+	^ height 
+]
+
+{ #category : 'accessing' }
 TopPanelRow >> height: anInteger [
 
 	height := anInteger
