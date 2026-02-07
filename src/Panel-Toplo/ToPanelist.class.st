@@ -60,11 +60,44 @@ ToPanelist >> frame [
 ]
 
 { #category : 'initialization' }
+ToPanelist >> frameElement [
+
+	^ ToInnerWindowPane new
+		border: (BlBorder paint: Color blue);
+		id: #'innerWindow-pane';
+		layout: BlBasicLayout uniqueInstance;
+		yourself
+ 
+]
+
+{ #category : 'initialization' }
 ToPanelist >> initialize [
 
 	super initialize. 
-	panelist := Panelist extent: 1000 @800.
+	panelist := Panelist extent: 1000 @ 800.
 	self setPanelistVisualElements.
+]
+
+{ #category : 'initialization' }
+ToPanelist >> leftFrameElement [
+
+	^ ToLeftColumnPane new
+			border: (BlBorder paint: Color blue);
+		  id: #'innerWindow-pane';
+		  layout: BlBasicLayout uniqueInstance;
+		  yourself
+ 
+]
+
+{ #category : 'initialization' }
+ToPanelist >> rightFrameElement [
+
+	^ ToRightColumnPane new
+			border: (BlBorder paint: Color blue);
+		  id: #'innerWindow-pane';
+		  layout: BlBasicLayout uniqueInstance;
+		  yourself
+ 
 ]
 
 { #category : 'initialization' }
@@ -74,25 +107,29 @@ ToPanelist >> setPanelistVisualElements [
 	frame := self frame.
 	frame height: panelist height. 
 	frame width: panelist width.
-	
 
-	leftColumn := ToInnerWindow new 
+	leftColumn := self leftFrameElement
+						panelist: panelist;
 						position: (panelist leftColumn topLeft);
 						height: panelist leftColumn parentHeight;
 						width: panelist leftColumn width.
 	frame addChild: leftColumn. 	
 	
-	rightColumn := ToInnerWindow new 
+	rightColumn := self rightFrameElement 
+						panelist: panelist;
 						position: (panelist rightColumn topLeft - (200@0));
 						height: panelist rightColumn parentHeight;
 						width: panelist rightColumn width.
 	frame addChild: rightColumn. 
 	
-	topRow := ToInnerWindow new 
+	topRow := self frameElement 
 						position: panelist topRow topLeft;
 						width: panelist rowWidth - 200;
 						height: panelist topRow height.
 	frame addChild: topRow. 
+	leftColumn topRow: topRow.
+	rightColumn topRow: topRow.
+	
 	
 	frame openInSpace.
 ]
