@@ -12,6 +12,13 @@ Class {
 	#package : 'Panel-Toplo'
 }
 
+{ #category : 'examples' }
+ToPanelist class >> example [
+	<script>
+	
+	self new frame openInSpace
+]
+
 { #category : 'trying' }
 ToPanelist >> displayFloaters [
 	"self new displayFloaters"
@@ -48,7 +55,7 @@ ToPanelist >> displayFloaters [
 	pane openInInnerWindow
 ]
 
-{ #category : 'initialization' }
+{ #category : 'helpers' }
 ToPanelist >> frame [
 
 	^ ToInnerWindowPane new
@@ -59,7 +66,7 @@ ToPanelist >> frame [
  
 ]
 
-{ #category : 'initialization' }
+{ #category : 'helpers' }
 ToPanelist >> frameElement [
 
 	^ ToInnerWindowPane new
@@ -75,10 +82,65 @@ ToPanelist >> initialize [
 
 	super initialize. 
 	panelist := Panelist extent: 1000 @ 800.
-	self setPanelistVisualElements.
+	
+	"should disappear when removing the model and turning this class into aToElement"
+	self initializeFrame.
+	
+	self initializeLeftColumn.
+	self initializeRightColumn.
+	self initializeTopRow.
+	self wiringElements.
+	
 ]
 
 { #category : 'initialization' }
+ToPanelist >> initializeFrame [
+	frame := self frame.
+	frame height: panelist height. 
+	frame width: panelist width.
+
+	
+]
+
+{ #category : 'initialization' }
+ToPanelist >> initializeLeftColumn [
+	
+	leftColumn := self leftFrameElement
+						panelist: panelist;
+						position: (panelist leftColumn topLeft);
+						height: panelist leftColumn parentHeight;
+						width: panelist leftColumn width.
+	frame addChild: leftColumn. 	
+	
+
+]
+
+{ #category : 'initialization' }
+ToPanelist >> initializeRightColumn [
+
+	rightColumn := self rightFrameElement 
+						panelist: panelist;
+						position: (panelist rightColumn topLeft - (200@0));
+						height: panelist rightColumn parentHeight;
+						width: panelist rightColumn width.
+	frame addChild: rightColumn. 
+	
+
+]
+
+{ #category : 'initialization' }
+ToPanelist >> initializeTopRow [
+
+	topRow := self topFrameElement 
+						position: panelist topRow topLeft;
+						width: panelist rowWidth - 200;
+						height: panelist topRow height.
+	frame addChild: topRow. 
+	
+	
+]
+
+{ #category : 'helpers' }
 ToPanelist >> leftFrameElement [
 
 	^ ToLeftColumnPane new
@@ -89,7 +151,7 @@ ToPanelist >> leftFrameElement [
  
 ]
 
-{ #category : 'initialization' }
+{ #category : 'helpers' }
 ToPanelist >> rightFrameElement [
 
 	^ ToRightColumnPane new
@@ -127,9 +189,28 @@ ToPanelist >> setPanelistVisualElements [
 						width: panelist rowWidth - 200;
 						height: panelist topRow height.
 	frame addChild: topRow. 
-	leftColumn topRow: topRow.
-	rightColumn topRow: topRow.
+	
+	
+	self wiringElements.
 	
 	
 	frame openInSpace.
+]
+
+{ #category : 'helpers' }
+ToPanelist >> topFrameElement [
+
+	^ ToTopRowPane new
+			border: (BlBorder paint: Color blue);
+		  id: #'innerWindow-pane';
+		  layout: BlBasicLayout uniqueInstance;
+		  yourself
+ 
+]
+
+{ #category : 'initialization' }
+ToPanelist >> wiringElements [
+	
+	leftColumn topRow: topRow.
+	rightColumn topRow: topRow.
 ]
