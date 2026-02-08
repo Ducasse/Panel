@@ -157,8 +157,16 @@ ToPanelist >> installMenu [
 		win addItem: (ToMenuItem new
 			labelText: 'Open';
 			clickAction: [ 
-			
-				frame addChild: ToInnerWindow new  ];
+				| w |
+				w := ToInnerWindow new.
+				w extent: 100@200.  
+				
+				w addEventHandlerOn: BlDropEvent do: [ :ev |
+					ev consumed: true.
+					self halt. 
+					].
+				frame addChild: w.
+			  ];
 			yourself) ].
 
 
@@ -203,12 +211,10 @@ ToPanelist >> setPanelistVisualElements [
 
 	self initializeLeftColumn.
 	
-	"leftColumn addEventFilterOn: BlDragEnterEvent do: [ :e |
-		Transcript show: 'drenter'.
-		leftColumn background: (Color red alpha: 0.8).
-		e consume ].
-	leftColumn addEventHandlerOn: BlDragEndEvent do: [ :e | 
-		leftColumn addChild: e ]."
+	leftColumn addEventHandlerOn: BlMouseEnterEvent do: [ :e | 
+		leftColumn background: (Color yellow alpha: 0.8) ].
+	leftColumn addEventHandlerOn: BlMouseLeaveEvent do: [ :e | 
+		leftColumn background: Color white ].
 	
 	
 	self initializeRightColumn.
