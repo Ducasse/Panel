@@ -1,3 +1,10 @@
+"
+Some possible todos:
+- how to add a window in the hand?
+- how to react to drag
+- change color when dragging to a zone
+- remove the model and migrate the tests to ToObjects.
+"
 Class {
 	#name : 'ToPanelist',
 	#superclass : 'Object',
@@ -134,12 +141,34 @@ ToPanelist >> initializeRightColumn [
 ToPanelist >> initializeTopRow [
 
 	topRow := self topFrameElement 
+						panelist: panelist;
 						position: panelist topRow topLeft;
 						width: panelist rowWidth - 200;
 						height: panelist topRow height.
 	frame addChild: topRow. 
 	
 	
+]
+
+{ #category : 'initialization' }
+ToPanelist >> installMenu [
+
+	frame contextMenuBuilder: [ :win :request |
+		win addItem: (ToMenuItem new
+			labelText: 'Open';
+			clickAction: [ 
+			
+				frame addChild: ToInnerWindow new  ];
+			yourself) ].
+
+
+"
+check 
+
+- experimentDragPreviewGameWithElementMoving
+
+
+"
 ]
 
 { #category : 'helpers' }
@@ -173,10 +202,21 @@ ToPanelist >> setPanelistVisualElements [
 	frame width: panelist width.
 
 	self initializeLeftColumn.
+	
+	"leftColumn addEventFilterOn: BlDragEnterEvent do: [ :e |
+		Transcript show: 'drenter'.
+		leftColumn background: (Color red alpha: 0.8).
+		e consume ].
+	leftColumn addEventHandlerOn: BlDragEndEvent do: [ :e | 
+		leftColumn addChild: e ]."
+	
+	
 	self initializeRightColumn.
 	self initializeTopRow.
 	
 	self wiringElements.
+	
+	self installMenu.
 	
 	
 	frame openInSpace.
