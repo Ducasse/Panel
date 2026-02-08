@@ -29,9 +29,8 @@ ToColumnPane >> initialize [
 { #category : 't - element with resize grips -  initializing' }
 ToColumnPane >> initializeGrips [
 
-	self grips: ({
-			 self gripClass
-			 } collect: [ :eachClass |
+	self grips: ({ self gripClass } 
+		collect: [ :eachClass |
 			 eachClass new
 				 target: self;
 				 yourself ]).

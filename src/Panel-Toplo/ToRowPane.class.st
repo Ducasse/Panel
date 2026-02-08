@@ -41,6 +41,6 @@ ToRowPane >> initializeGrips [
 			 on: BlElementExtentChangedEvent
 			 do: [ :evt | 
 						self layoutGrips.
-						self updateHeight: evt target width. 
+						self updateHeight: evt target height. 
 						])
 ]

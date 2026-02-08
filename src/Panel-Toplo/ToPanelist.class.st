@@ -82,19 +82,21 @@ ToPanelist >> initialize [
 
 	super initialize. 
 	panelist := Panelist extent: 1000 @ 800.
+	self setPanelistVisualElements.
 	
 	"should disappear when removing the model and turning this class into aToElement"
-	self initializeFrame.
+"	self initializeFrame.
 	
 	self initializeLeftColumn.
 	self initializeRightColumn.
 	self initializeTopRow.
-	self wiringElements.
+	self wiringElements."
 	
 ]
 
 { #category : 'initialization' }
 ToPanelist >> initializeFrame [
+
 	frame := self frame.
 	frame height: panelist height. 
 	frame width: panelist width.
@@ -170,26 +172,9 @@ ToPanelist >> setPanelistVisualElements [
 	frame height: panelist height. 
 	frame width: panelist width.
 
-	leftColumn := self leftFrameElement
-						panelist: panelist;
-						position: (panelist leftColumn topLeft);
-						height: panelist leftColumn parentHeight;
-						width: panelist leftColumn width.
-	frame addChild: leftColumn. 	
-	
-	rightColumn := self rightFrameElement 
-						panelist: panelist;
-						position: (panelist rightColumn topLeft - (200@0));
-						height: panelist rightColumn parentHeight;
-						width: panelist rightColumn width.
-	frame addChild: rightColumn. 
-	
-	topRow := self frameElement 
-						position: panelist topRow topLeft;
-						width: panelist rowWidth - 200;
-						height: panelist topRow height.
-	frame addChild: topRow. 
-	
+	self initializeLeftColumn.
+	self initializeRightColumn.
+	self initializeTopRow.
 	
 	self wiringElements.
 	

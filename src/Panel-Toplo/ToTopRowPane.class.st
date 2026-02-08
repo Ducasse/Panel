@@ -11,6 +11,11 @@ ToTopRowPane >> gripClass [
 	^ ToBottomResizeGrip 
 ]
 
+{ #category : 'accessing' }
+ToTopRowPane >> panelist: aPanelist [ 
+	panelist := aPanelist 
+]
+
 { #category : 't - element with resize grips -  initializing' }
 ToTopRowPane >> updateHeight: anInteger [
 

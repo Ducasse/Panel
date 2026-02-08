@@ -15,10 +15,10 @@ ToLeftColumnPane >> gripClass [
 { #category : 'initialization' }
 ToLeftColumnPane >> repositionTopRow [
 
-
-	topRow position: panelist topRow topLeft;
-	width: panelist rowWidth - 200;
-	height: panelist topRow height.
+	topRow 
+		position: panelist topRow topLeft;
+		width: panelist rowWidth - 200;
+		height: panelist topRow height.
 ]
 
 { #category : 'initialization' }

@@ -29,7 +29,7 @@ TopPanelRow >> height [
 
 { #category : 'accessing' }
 TopPanelRow >> height: anInteger [
-
+	
 	height := anInteger
 ]
 
