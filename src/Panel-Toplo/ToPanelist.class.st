@@ -19,13 +19,6 @@ Class {
 	#package : 'Panel-Toplo'
 }
 
-{ #category : 'examples' }
-ToPanelist class >> example [
-	<script>
-	
-	self new frame openInSpace
-]
-
 { #category : 'trying' }
 ToPanelist >> displayFloaters [
 	"self new displayFloaters"
@@ -63,17 +56,6 @@ ToPanelist >> displayFloaters [
 ]
 
 { #category : 'helpers' }
-ToPanelist >> frame [
-
-	^ ToInnerWindowPane new
-		  id: #'innerWindow-pane';
-		  matchParent;
-		  layout: BlBasicLayout uniqueInstance;
-		  yourself
- 
-]
-
-{ #category : 'helpers' }
 ToPanelist >> frameElement [
 
 	^ ToInnerWindowPane new
@@ -104,7 +86,7 @@ ToPanelist >> initialize [
 { #category : 'initialization' }
 ToPanelist >> initializeFrame [
 
-	frame := self frame.
+	frame := self frameElement.
 	frame height: panelist height. 
 	frame width: panelist width.
 
@@ -122,11 +104,17 @@ ToPanelist >> initializeLeftColumn [
 	frame addChild: leftColumn. 	
 	
 	leftColumn addEventHandlerOn: BlDropEvent do: [ :event |
+		| source target |
+		source := event gestureSource.
+		target := event target.
 		event consumed: true.
-		event gestureSource background: Color blue.
-		event gestureSource width: leftColumn width. 
-		'Drop on left target' traceCr.
-		leftColumn background: Color random ].
+		source 
+			background: (Color blue alpha: 0.8);
+			height: target height;
+			width: target width. 
+		target background: Color yellow.
+		source removeFromParent.
+      target addChild: source ].
 
 	
 ]
@@ -141,10 +129,18 @@ ToPanelist >> initializeRightColumn [
 						width: panelist rightColumn width.
 	frame addChild: rightColumn. 
 	rightColumn addEventHandlerOn: BlDropEvent do: [ :event |
+		| source target |
+		source := event gestureSource.
+		target := event target.
 		event consumed: true.
-		event target addChild: event gestureSource. 
-		'Drop on right target' traceCr.
-		rightColumn background: Color random ].
+		source removeFromParent.
+      target addChild: source.
+		source 
+			background: (Color blue alpha: 0.8);
+			height: target height;
+			width: target width. 
+		target background: Color yellow.
+		].
 
 	
 
@@ -174,11 +170,8 @@ ToPanelist >> installMenu [
 				| w |
 				w := ToInnerWindow new.
 				w extent: 100@200.  
+				w position: frame bounds center.
 				w addEventHandler: BlDragHandler new.
-				"w addEventHandlerOn: BlDropEvent do: [ :ev |
-					ev consumed: true.
-					self halt. 
-					]."
 				frame addChild: w.
 			  ]);
 			addItem: (ToMenuItem new
@@ -230,9 +223,7 @@ ToPanelist >> rightFrameElement [
 ToPanelist >> setPanelistVisualElements [
 	"self new"
 	
-	frame := self frame.
-	frame height: panelist height. 
-	frame width: panelist width.
+	self initializeFrame.
 
 	self initializeLeftColumn.
 	self initializeRightColumn.
@@ -241,8 +232,6 @@ ToPanelist >> setPanelistVisualElements [
 	self wiringElements.
 	
 	self installMenu.
-	
-	
 	frame openInSpace.
 ]
 
