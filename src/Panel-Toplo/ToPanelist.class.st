@@ -121,7 +121,14 @@ ToPanelist >> initializeLeftColumn [
 						width: panelist leftColumn width.
 	frame addChild: leftColumn. 	
 	
+	leftColumn addEventHandlerOn: BlDropEvent do: [ :event |
+		event consumed: true.
+		event gestureSource background: Color blue.
+		event gestureSource width: leftColumn width. 
+		'Drop on left target' traceCr.
+		leftColumn background: Color random ].
 
+	
 ]
 
 { #category : 'initialization' }
@@ -133,6 +140,12 @@ ToPanelist >> initializeRightColumn [
 						height: panelist rightColumn parentHeight;
 						width: panelist rightColumn width.
 	frame addChild: rightColumn. 
+	rightColumn addEventHandlerOn: BlDropEvent do: [ :event |
+		event consumed: true.
+		event target addChild: event gestureSource. 
+		'Drop on right target' traceCr.
+		rightColumn background: Color random ].
+
 	
 
 ]
@@ -154,20 +167,32 @@ ToPanelist >> initializeTopRow [
 ToPanelist >> installMenu [
 
 	frame contextMenuBuilder: [ :win :request |
-		win addItem: (ToMenuItem new
+		win 
+			addItem: (ToMenuItem new
 			labelText: 'Open';
 			clickAction: [ 
 				| w |
 				w := ToInnerWindow new.
 				w extent: 100@200.  
-				
-				w addEventHandlerOn: BlDropEvent do: [ :ev |
+				w addEventHandler: BlDragHandler new.
+				"w addEventHandlerOn: BlDropEvent do: [ :ev |
 					ev consumed: true.
 					self halt. 
-					].
+					]."
 				frame addChild: w.
-			  ];
-			yourself) ].
+			  ]);
+			addItem: (ToMenuItem new
+			labelText: 'Open simple ';
+			clickAction: [ 
+				| b |
+				b := BlElement new
+					background: Color red;
+					extent: 50@50;
+					addEventHandler: BlDragHandler new;
+					position: frame bounds center.
+				frame addChild: b.
+			  ]);
+			yourself ].
 
 
 "
@@ -210,13 +235,6 @@ ToPanelist >> setPanelistVisualElements [
 	frame width: panelist width.
 
 	self initializeLeftColumn.
-	
-	leftColumn addEventHandlerOn: BlMouseEnterEvent do: [ :e | 
-		leftColumn background: (Color yellow alpha: 0.8) ].
-	leftColumn addEventHandlerOn: BlMouseLeaveEvent do: [ :e | 
-		leftColumn background: Color white ].
-	
-	
 	self initializeRightColumn.
 	self initializeTopRow.
 	
