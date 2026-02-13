@@ -103,6 +103,7 @@ ToPanelist >> initializeLeftColumn [
 						width: panelist leftColumn width.
 	frame addChild: leftColumn. 	
 	
+		"When I uncomment the following, it looks like I'm introducing an endless loop."
 	"leftColumn addEventHandlerOn: BlDropEvent do: [ :event |
 		| source target |
 		source := event gestureSource.
@@ -130,6 +131,8 @@ ToPanelist >> initializeRightColumn [
 						width: panelist rightColumn width.
 	frame addChild: rightColumn. 
 	
+	"When I uncomment the following, it looks like I'm introducing an endless loop."
+	
 	"rightColumn addEventHandlerOn: BlDropEvent do: [ :event |
 		| source target |
 		source := event gestureSource.
@@ -141,7 +144,6 @@ ToPanelist >> initializeRightColumn [
 			background: (Color blue alpha: 0.8);
 			height: target height;
 			width: target width. 
-		target panelist rightColumn topLeft traceCr.
 		target background: Color yellow.
 		]."
 
