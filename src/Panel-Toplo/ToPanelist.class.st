@@ -103,7 +103,7 @@ ToPanelist >> initializeLeftColumn [
 						width: panelist leftColumn width.
 	frame addChild: leftColumn. 	
 	
-	leftColumn addEventHandlerOn: BlDropEvent do: [ :event |
+	"leftColumn addEventHandlerOn: BlDropEvent do: [ :event |
 		| source target |
 		source := event gestureSource.
 		target := event target.
@@ -115,6 +115,7 @@ ToPanelist >> initializeLeftColumn [
 		target background: Color yellow.
 		source removeFromParent.
       target addChild: source ].
+"
 
 	
 ]
@@ -124,11 +125,12 @@ ToPanelist >> initializeRightColumn [
 
 	rightColumn := self rightFrameElement 
 						panelist: panelist;
-						position: (panelist rightColumn topLeft - (200@0));
+						position: panelist rightColumn topLeft - (200@0);
 						height: panelist rightColumn parentHeight;
 						width: panelist rightColumn width.
 	frame addChild: rightColumn. 
-	rightColumn addEventHandlerOn: BlDropEvent do: [ :event |
+	
+	"rightColumn addEventHandlerOn: BlDropEvent do: [ :event |
 		| source target |
 		source := event gestureSource.
 		target := event target.
@@ -139,8 +141,9 @@ ToPanelist >> initializeRightColumn [
 			background: (Color blue alpha: 0.8);
 			height: target height;
 			width: target width. 
+		target panelist rightColumn topLeft traceCr.
 		target background: Color yellow.
-		].
+		]."
 
 	
 

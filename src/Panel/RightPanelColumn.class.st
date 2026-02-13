@@ -23,7 +23,7 @@ RightPanelColumn >> topLeft [
 	
 	^ hidden 
 		ifTrue: [ self parentWidth @ 0]
-		ifFalse: [ self parentWidth - width @ 0 ]
+		ifFalse: [ (self parentWidth - width) @ 0 ]
 
 ]
 
