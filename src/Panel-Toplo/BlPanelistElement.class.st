@@ -13,14 +13,12 @@ Class {
 BlPanelistElement class >> example [
 
 	<script>
-	
-	self new inspect ; openInSpace
-]
-
-{ #category : 'initialization' }
-BlPanelistElement >> defaultColumnWidth [
-
-	^ 200
+	| sp panel |
+	sp := BlSpace new.
+	panel := BlPanelistElement new.
+	sp root addChild: panel. 
+	sp pulse.
+	sp show
 ]
 
 { #category : 'initialization' }
@@ -40,7 +38,6 @@ BlPanelistElement >> initializeLeftColumn [
 	leftColumn := BlLeftColumnPaneElement new.
 	leftColumn width: self width.
 	leftColumn height: self height. 
-					" position: self leftColumn topLeft;"
 	self addChild: leftColumn. 	
 ]
 
