@@ -10,7 +10,7 @@ Class {
 LeftPanelColumn >> bottomRight [
 	
 	^ hidden 
-		ifTrue: [ 0@ self parentHeight ]
+		ifTrue: [ 0 @ self parentHeight ]
 		ifFalse: [ width @ self parentHeight ]
 ]
 

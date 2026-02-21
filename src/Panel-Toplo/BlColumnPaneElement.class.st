@@ -1,34 +1,35 @@
 Class {
-	#name : 'ToColumnPane',
-	#superclass : 'ToElement',
+	#name : 'BlColumnPaneElement',
+	#superclass : 'BlElement',
 	#traits : 'TToElementWithResizeGrips',
 	#classTraits : 'TToElementWithResizeGrips classTrait',
 	#instVars : [
 		'topRow',
 		'panelist'
 	],
-	#category : 'Panel-Toplo-Toplo',
+	#category : 'Panel-Toplo-Element',
 	#package : 'Panel-Toplo',
-	#tag : 'Toplo'
+	#tag : 'Element'
 }
 
 { #category : 'initialization' }
-ToColumnPane >> defaultExtent [
+BlColumnPaneElement >> defaultExtent [
 
 	^ 400 @ 300
 ]
 
 { #category : 'initialization' }
-ToColumnPane >> initialize [
+BlColumnPaneElement >> initialize [
 
 	super initialize.
 	self layout: BlLinearLayout vertical.
 	self extent: self defaultExtent.
+	self border: (BlBorder paint: Color blue).
 	self initializeGrips
 ]
 
 { #category : 't - element with resize grips -  initializing' }
-ToColumnPane >> initializeGrips [
+BlColumnPaneElement >> initializeGrips [
 
 	self grips: ({ self gripClass } 
 		collect: [ :eachClass |
@@ -47,25 +48,31 @@ ToColumnPane >> initializeGrips [
 ]
 
 { #category : 'accessing' }
-ToColumnPane >> panelist [
+BlColumnPaneElement >> panelist [
 
 	^ panelist
 ]
 
 { #category : 'accessing' }
-ToColumnPane >> panelist: anObject [
+BlColumnPaneElement >> panelist: anObject [
 
 	panelist := anObject
 ]
 
 { #category : 'accessing' }
-ToColumnPane >> topRow [
+BlColumnPaneElement >> parentHeight [
+
+	^ self parent height
+]
+
+{ #category : 'accessing' }
+BlColumnPaneElement >> topRow [
 
 	^ topRow
 ]
 
 { #category : 'accessing' }
-ToColumnPane >> topRow: anObject [
+BlColumnPaneElement >> topRow: anObject [
 
 	topRow := anObject
 ]

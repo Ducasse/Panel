@@ -1,8 +1,9 @@
 Class {
 	#name : 'ToTopRowPane',
 	#superclass : 'ToRowPane',
-	#category : 'Panel-Toplo',
-	#package : 'Panel-Toplo'
+	#category : 'Panel-Toplo-Toplo',
+	#package : 'Panel-Toplo',
+	#tag : 'Toplo'
 }
 
 { #category : 't - element with resize grips -  initializing' }

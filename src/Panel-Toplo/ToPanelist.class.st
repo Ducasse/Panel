@@ -15,8 +15,9 @@ Class {
 		'rightColumn',
 		'topRow'
 	],
-	#category : 'Panel-Toplo',
-	#package : 'Panel-Toplo'
+	#category : 'Panel-Toplo-Toplo',
+	#package : 'Panel-Toplo',
+	#tag : 'Toplo'
 }
 
 { #category : 'trying' }
@@ -205,11 +206,11 @@ check
 { #category : 'helpers' }
 ToPanelist >> leftFrameElement [
 
-	^ ToLeftColumnPane new
-			border: (BlBorder paint: Color blue);
-		  id: #'innerWindow-pane';
-		  layout: BlBasicLayout uniqueInstance;
-		  yourself
+	^ BlLeftColumnPaneElement new
+		border: (BlBorder paint: Color blue);
+		id: #'innerWindow-pane';
+		layout: BlBasicLayout uniqueInstance;
+		yourself
  
 ]
 

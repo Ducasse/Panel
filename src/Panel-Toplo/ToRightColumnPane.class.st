@@ -1,8 +1,9 @@
 Class {
 	#name : 'ToRightColumnPane',
 	#superclass : 'ToColumnPane',
-	#category : 'Panel-Toplo',
-	#package : 'Panel-Toplo'
+	#category : 'Panel-Toplo-Toplo',
+	#package : 'Panel-Toplo',
+	#tag : 'Toplo'
 }
 
 { #category : 'initialize' }
